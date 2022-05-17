@@ -64,7 +64,6 @@ Metrics/LineLength:
     - "db/migrate/*.rb"
 
 # メソッドの行数
-Metrics/MethodLength:
-  Max: 20
+Metrics/BlockLength:
   Exclude:
-    - "db/migrate/*.rb"
+    - 'spec/**/*'
