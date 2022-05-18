@@ -1,21 +1,19 @@
 module.exports = {
-  // 環境設定
   env: {
-    es6: true,
     browser: true,
+    es2021: true,
     node: true,
   },
-  parser: 'babel-eslint',
-  plugins: ['react'],
+  extends: ['plugin:react/recommended', 'standard', 'prettier'],
   parserOptions: {
-    ecmaVersion: 2021,
-    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  extends: [
-    'some-other-config-you-use',
-    'prettier',
-  ]
-};
+  plugins: ['react'],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+  },
+}

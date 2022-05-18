@@ -11,6 +11,9 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
   }
+  body{
+    background-color:#F4F8F9;
+  }
 `;
 
 function App() {

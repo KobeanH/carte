@@ -1,14 +1,12 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Header = () => {
   const Header = styled.header`
-  background-color:red;
+    background-color: red;
   `
   return (
     <>
-<Header>
-fddd
-</Header>
+      <Header>fddd</Header>
     </>
-  );
-};
+  )
+}
