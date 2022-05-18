@@ -15,14 +15,7 @@ module.exports = {
     },
   },
   extends: [
-    // eslint-plugin-react 関連
-    'eslint:recommended',
-    'plugin:react/recommended',
-    // Prettier 関連
-    'plugin:prettier/recommended',
-    'prettier/react',
-  ],
-  rules: {
-    // お好みで構文解析のルールを追加
-  },
-}
+    'some-other-config-you-use',
+    'prettier',
+  ]
+};
