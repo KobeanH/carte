@@ -2,29 +2,21 @@
 import styled from 'styled-components'
 
 // 内部モジュール
-import { DarkGray, LightGray } from '../../../style/Color'
+import { BaseGrayBtn } from '../../../style/btn/BaseGrayBtn'
+
+const Btn = styled.a`
+  ${BaseGrayBtn}
+  height: 48px;
+  padding: 10px 32px;
+  font-size: 2rem;
+  border-radius: 8px;
+`
 
 export const GrayBtn = (props) => {
-  const { children, fSize } = props
-
-  const GrayBtn = styled.a`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    max-height: 48px;
-    /* width: 163px; */
-    padding: 24px 32px;
-    background-color: ${LightGray};
-    color: ${DarkGray};
-    font-size: ${fSize}rem;
-    letter-spacing: 0.03em;
-    border-radius: 8px;
-  `
+  const { children } = props
   return (
     <>
-      <GrayBtn>{children}</GrayBtn>
+      <Btn>{children}</Btn>
     </>
   )
 }

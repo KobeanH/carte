@@ -5,20 +5,30 @@ import styled from 'styled-components'
 import { HeaderLogo } from '../molecules/HeaderLogo'
 import { GrayBtn } from '../atoms/btn/GrayBtn'
 
+const HeaderWrap = styled.header`
+  position: relative;
+  height: 80px;
+  width: 100%;
+  background-color: #fff;
+`
+const HeaderInner = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1200px;
+`
+
 export const Header = () => {
-  const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    background-color: #fff;
-  `
   return (
     <>
-      <Header>
+      <HeaderWrap>
         <HeaderLogo />
-        <GrayBtn fSize={2}>ログアウト</GrayBtn>
-      </Header>
+        <HeaderInner>
+          <GrayBtn>ログアウト</GrayBtn>
+        </HeaderInner>
+      </HeaderWrap>
     </>
   )
 }
