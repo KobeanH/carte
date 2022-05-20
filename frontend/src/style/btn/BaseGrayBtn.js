@@ -2,7 +2,7 @@
 import { css } from 'styled-components'
 
 // 内部モジュール
-import { DarkGray, LightGray } from '../Color'
+import { Color } from '../Color'
 
 export const BaseGrayBtn = css`
   display: flex;
@@ -10,7 +10,7 @@ export const BaseGrayBtn = css`
   align-items: center;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  background-color: ${LightGray};
-  color: ${DarkGray};
+  background-color: ${Color.LightGray};
+  color: ${Color.DarkGray};
   letter-spacing: 0.03em;
 `

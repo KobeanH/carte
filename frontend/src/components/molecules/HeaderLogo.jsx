@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // 内部モジュール
 import { HeaderLogoTtl } from '../atoms/text/HeaderLogoText'
 import { HeaderLogoImg } from '../atoms/img/HeaderLogoImg'
-import { MainColor } from '../../style/Color'
+import { Color } from '../../style/Color'
 
 const LogoWrap = styled.span`
   display: flex;
@@ -14,7 +14,7 @@ const LogoWrap = styled.span`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: ${MainColor};
+  background-color: ${Color.MainColor};
   height: 100%;
   width: 230px;
 `

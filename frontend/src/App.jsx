@@ -3,13 +3,13 @@
 import { GlobalStyle } from './style/GlobalStyle'
 
 // 内部モジュール
-import { Header } from './components/organisms/Header'
+import { Home } from './components/pages/Home'
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Header></Header>
+      <Home />
     </>
   )
 }
