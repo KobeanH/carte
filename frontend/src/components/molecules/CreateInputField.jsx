@@ -6,6 +6,10 @@ import { CreateInput } from '../atoms/input/CreateInput'
 import { CreateLabel } from '../atoms/label/CreateLabel'
 
 const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 280px;
+  width: 100%;
   > label {
     margin-bottom: 6px;
   }
@@ -19,6 +23,7 @@ export const CreateInputField = (props) => {
       <Wrap>
         <CreateLabel inputFor={inputFor}>{children}</CreateLabel>
         <CreateInput
+          id={inputFor}
           type={type}
           name={name}
           value={value}

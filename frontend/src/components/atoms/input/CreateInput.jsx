@@ -9,15 +9,16 @@ const Input = styled.input`
   width: 100%;
   border: 1px solid #d7d7d7;
   border-radius: 6px;
-  padding: 10px 32px;
-  font-size: 1.6rem;
+  padding: 10px 16px;
+  font-size: 1.4rem;
 `
 
 export const CreateInput = (props) => {
-  const { type, name, value, placeholder, onChange } = props
+  const { id, type, name, value, placeholder, onChange } = props
   return (
     <>
       <Input
+        id={id}
         type={type}
         name={name}
         value={value}

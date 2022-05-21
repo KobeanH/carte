@@ -1,15 +1,39 @@
 // 外部モジュール
-// import styled from 'styled-components'
 import { useState } from 'react'
+import styled from 'styled-components'
+import { FormBtn } from '../atoms/btn/FormBtn'
 
 // 内部モジュール
 import { CreateInputField } from '../molecules/CreateInputField'
 
-export const CreateForm = (props) => {
-  const [name, setName] = useState(null)
-  const [email, setEmail] = useState(null)
-  const [password, setPassword] = useState(null)
-  const [confirmPass, setConfirmPass] = useState(null)
+const Title = styled.h1`
+  margin-bottom: 32px;
+  font-size: 3.2rem;
+  text-align: center;
+`
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  max-width: 736px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px;
+  > div:not(:nth-child(4)) {
+    margin-bottom: 24px;
+  }
+  > div:nth-child(4) {
+    margin-bottom: 40px;
+  }
+`
+
+export const CreateForm = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPass, setConfirmPass] = useState('')
 
   // 名前入力欄
   const getName = (e) => {
@@ -33,46 +57,50 @@ export const CreateForm = (props) => {
   }
   return (
     <>
-      <CreateInputField
-        inputFor={'name'}
-        type={'text'}
-        name={'name'}
-        value={name}
-        placeholder={'山田　太郎'}
-        onChange={getName}
-      >
-        名前
-      </CreateInputField>
-      <CreateInputField
-        inputFor={'email'}
-        type={'text'}
-        name={'email'}
-        value={email}
-        placeholder={'example@gmail.com'}
-        onChange={getEmail}
-      >
-        Email
-      </CreateInputField>
-      <CreateInputField
-        inputFor={'password'}
-        type={'password'}
-        name={'password'}
-        value={password}
-        placeholder={'パスワード'}
-        onChange={getPassword}
-      >
-        パスワード
-      </CreateInputField>
-      <CreateInputField
-        inputFor={'confirmPass'}
-        type={'password'}
-        name={'confirmPass'}
-        value={confirmPass}
-        placeholder={'もう一度パスワードを入力してください'}
-        onChange={getConfirPass}
-      >
-        再確認用パスワード
-      </CreateInputField>
+      <Title>アカウント作成</Title>
+      <Wrap>
+        <CreateInputField
+          inputFor={'name'}
+          type={'text'}
+          name={'name'}
+          value={name}
+          placeholder={'山田　太郎'}
+          onChange={getName}
+        >
+          名前
+        </CreateInputField>
+        <CreateInputField
+          inputFor={'email'}
+          type={'text'}
+          name={'email'}
+          value={email}
+          placeholder={'example@gmail.com'}
+          onChange={getEmail}
+        >
+          Email
+        </CreateInputField>
+        <CreateInputField
+          inputFor={'password'}
+          type={'password'}
+          name={'password'}
+          value={password}
+          placeholder={'パスワード'}
+          onChange={getPassword}
+        >
+          パスワード
+        </CreateInputField>
+        <CreateInputField
+          inputFor={'confirmPass'}
+          type={'password'}
+          name={'confirmPass'}
+          value={confirmPass}
+          placeholder={'もう一度パスワードを入力してください'}
+          onChange={getConfirPass}
+        >
+          再確認用パスワード
+        </CreateInputField>
+        <FormBtn>ログイン</FormBtn>
+      </Wrap>
     </>
   )
 }

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Label = styled.label`
   color: #000;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 `
 
 export const CreateLabel = (props) => {
