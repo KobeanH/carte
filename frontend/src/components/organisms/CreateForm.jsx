@@ -1,17 +1,19 @@
 // 外部モジュール
 import { useState } from 'react'
 import styled from 'styled-components'
-import { FormBtn } from '../atoms/btn/FormBtn'
 
 // 内部モジュール
 import { CreateInputField } from '../molecules/CreateInputField'
+import { Line } from '../../img/Line'
+import { FormBtn } from '../atoms/btn/FormBtn'
+import { Color } from '../../style/Color'
 
 const Title = styled.h1`
   margin-bottom: 32px;
   font-size: 3.2rem;
   text-align: center;
 `
-const Wrap = styled.div`
+const Wrap = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +29,18 @@ const Wrap = styled.div`
   > div:nth-child(4) {
     margin-bottom: 40px;
   }
+  > svg {
+    margin: 24px 0;
+  }
+`
+const LogInText = styled.p`
+  font-size: 1.6rem;
+  text-align: center;
+  letter-spacing: 0.03em;
+`
+const LogInTextLink = styled.a`
+  font-size: 1.6rem;
+  color: ${Color.MainColor};
 `
 
 export const CreateForm = () => {
@@ -58,7 +72,7 @@ export const CreateForm = () => {
   return (
     <>
       <Title>アカウント作成</Title>
-      <Wrap>
+      <Wrap action="/users" id="new_user" method="post">
         <CreateInputField
           inputFor={'name'}
           type={'text'}
@@ -99,7 +113,11 @@ export const CreateForm = () => {
         >
           再確認用パスワード
         </CreateInputField>
-        <FormBtn>ログイン</FormBtn>
+        <FormBtn>作成する</FormBtn>
+        <Line />
+        <LogInText>
+          ログインは<LogInTextLink>こちら</LogInTextLink>
+        </LogInText>
       </Wrap>
     </>
   )
