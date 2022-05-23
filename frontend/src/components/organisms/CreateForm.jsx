@@ -1,5 +1,5 @@
 // 外部モジュール
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 // 内部モジュール
@@ -7,6 +7,7 @@ import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
+import { getCreateAccount } from '../../apis/CreateAccount'
 
 const Title = styled.h1`
   margin-bottom: 32px;
@@ -69,6 +70,19 @@ export const CreateForm = () => {
     const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
     setConfirmPass(value)
   }
+
+  const CreateAccount = () => {
+    console.log('push')
+    // PostCreateAccount({
+    //   nameee: name,
+    //   emaileee: email,
+    // }).then(() => {
+    //   console.log('nice')
+    // })
+  }
+  useEffect(() => {
+    getCreateAccount()
+  }, [])
   return (
     <>
       <Title>アカウント作成</Title>
@@ -113,7 +127,7 @@ export const CreateForm = () => {
         >
           再確認用パスワード
         </CreateInputField>
-        <FormBtn>作成する</FormBtn>
+        <FormBtn onClick={CreateAccount}>作成する</FormBtn>
         <Line />
         <LogInText>
           ログインは<LogInTextLink>こちら</LogInTextLink>

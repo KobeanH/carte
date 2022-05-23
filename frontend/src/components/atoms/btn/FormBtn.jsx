@@ -4,20 +4,21 @@ import styled from 'styled-components'
 // 内部モジュール
 import { BaseBlueBtn } from '../../../style/btn/BaseBlueBtn'
 
-const Btn = styled.a`
+const Btn = styled.button`
   ${BaseBlueBtn}
   height: 40px;
   width: 200px;
   padding: 10px 32px;
   font-size: 2rem;
   border-radius: 8px;
+  border: none;
 `
 
 export const FormBtn = (props) => {
-  const { children } = props
+  const { children, onClick } = props
   return (
     <>
-      <Btn>{children}</Btn>
+      <Btn onClick={onClick}>{children}</Btn>
     </>
   )
 }
