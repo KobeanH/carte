@@ -6,6 +6,8 @@ export const PostCreateAccount = (params) => {
     .post(CreateAccountUrl, {
       name: params.nameee,
       email: params.emaileee,
+      password: params.passwordeee,
+      password_confirmation: params.password_confirmationeee,
     })
     .then((res) => {
       console.log('success')
@@ -15,7 +17,7 @@ export const PostCreateAccount = (params) => {
 }
 
 export const getCreateAccount = () => {
-  axios
+  return axios
     .get(CreateAccountUrl)
     .then((res) => {
       console.log('success')

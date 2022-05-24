@@ -7,7 +7,7 @@ import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
-import { getCreateAccount } from '../../apis/CreateAccount'
+import { getCreateAccount, PostCreateAccount } from '../../apis/CreateAccount'
 
 const Title = styled.h1`
   margin-bottom: 32px;
@@ -69,16 +69,20 @@ export const CreateForm = () => {
   const getConfirPass = (e) => {
     const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
     setConfirmPass(value)
+    // console.log(value)
   }
 
   const CreateAccount = () => {
     console.log('push')
-    // PostCreateAccount({
-    //   nameee: name,
-    //   emaileee: email,
-    // }).then(() => {
-    //   console.log('nice')
-    // })
+    PostCreateAccount({
+      nameee: name,
+      emaileee: email,
+      passwordeee: password,
+      password_confirmationeee: confirmPass,
+    }).then(() => {
+      console.log('nice')
+    })
+    getCreateAccount()
   }
   useEffect(() => {
     getCreateAccount()
@@ -118,9 +122,9 @@ export const CreateForm = () => {
           パスワード
         </CreateInputField>
         <CreateInputField
-          inputFor={'confirmPass'}
+          inputFor={'password_confirmation'}
           type={'password'}
-          name={'confirmPass'}
+          name={'password_confirmation'}
           value={confirmPass}
           placeholder={'もう一度パスワードを入力してください'}
           onChange={getConfirPass}
