@@ -1,5 +1,5 @@
 // 外部モジュール
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 
 // 内部モジュール
@@ -7,7 +7,7 @@ import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
-import { getCreateAccount, PostCreateAccount } from '../../apis/CreateAccount'
+import { PostCreateAccount } from '../../apis/CreateAccount'
 
 const Title = styled.h1`
   margin-bottom: 32px;
@@ -62,7 +62,7 @@ export const CreateForm = () => {
   }
   // パスワード入力欄
   const getPassword = (e) => {
-    const value = e.target.value.replace(/[^a-zA-Zぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
+    const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
     setPassword(value)
   }
   // 確認用パスワード入力欄
@@ -81,9 +81,9 @@ export const CreateForm = () => {
     })
   }
 
-  useEffect(() => {
-    getCreateAccount()
-  }, [])
+  // useEffect(() => {
+  //   getCreateAccount()
+  // }, [])
   return (
     <>
       <Title>アカウント作成</Title>

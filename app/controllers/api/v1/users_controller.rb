@@ -17,17 +17,11 @@ module Api
       def create
         @user = User.new(user_params)
         if @user.save
-          puts 'success!!!!!!'
         render json: {
           users: @users
         }, status: :ok
-          puts user_params
         else
-          puts 'faildddd'
-          puts user_params
-        # render json: {
-        #   users: @users
-        # }, status: :ok
+          render json: { status: 500 }
         end
       end
 

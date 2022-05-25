@@ -15,15 +15,14 @@ export const PostCreateAccount = (params) => {
       console.log('success')
     })
     .catch((e) => console.error(e))
-  event.preventDefault()
 }
 
-export const getCreateAccount = () => {
-  return axios
-    .get(CreateAccountUrl)
-    .then((res) => {
-      console.log('success')
-      console.log(res.data)
-    })
-    .catch((e) => console.error(e))
-}
+// export const getCreateAccount = () => {
+//   return axios
+//     .get(CreateAccountUrl)
+//     .then((res) => {
+//       console.log('success')
+//       console.log(res.data)
+//     })
+//     .catch((e) => console.error(e))
+// }
