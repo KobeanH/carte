@@ -66,24 +66,21 @@ export const CreateForm = () => {
     setPassword(value)
   }
   // 確認用パスワード入力欄
-  const getConfirPass = (e) => {
+  const getConfirmPass = (e) => {
     const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
     setConfirmPass(value)
-    // console.log(value)
   }
 
   const CreateAccount = () => {
     console.log('push')
     PostCreateAccount({
-      nameee: name,
-      emaileee: email,
-      passwordeee: password,
-      password_confirmationeee: confirmPass,
-    }).then(() => {
-      console.log('nice')
+      name,
+      email,
+      password,
+      password_confirmation: confirmPass,
     })
-    getCreateAccount()
   }
+
   useEffect(() => {
     getCreateAccount()
   }, [])
@@ -112,22 +109,22 @@ export const CreateForm = () => {
           Email
         </CreateInputField>
         <CreateInputField
-          inputFor={'password'}
+          inputFor="password"
           type={'password'}
-          name={'password'}
+          name="password"
           value={password}
-          placeholder={'パスワード'}
+          placeholder="パスワード"
           onChange={getPassword}
         >
           パスワード
         </CreateInputField>
         <CreateInputField
-          inputFor={'password_confirmation'}
+          inputFor="password_confirmation"
           type={'password'}
-          name={'password_confirmation'}
+          name="password_confirmation"
           value={confirmPass}
-          placeholder={'もう一度パスワードを入力してください'}
-          onChange={getConfirPass}
+          placeholder="もう一度パスワードを入力してください"
+          onChange={getConfirmPass}
         >
           再確認用パスワード
         </CreateInputField>

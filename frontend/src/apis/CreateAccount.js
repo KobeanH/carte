@@ -4,16 +4,18 @@ import { CreateAccountUrl } from '../urls/index'
 export const PostCreateAccount = (params) => {
   axios
     .post(CreateAccountUrl, {
-      name: params.nameee,
-      email: params.emaileee,
-      password: params.passwordeee,
-      password_confirmation: params.password_confirmationeee,
+      user: {
+        name: params.name,
+        email: params.email,
+        password: params.password,
+        password_confirmation: params.password_confirmation,
+      },
     })
-    .then((res) => {
+    .then(() => {
       console.log('success')
-      return res.data
     })
     .catch((e) => console.error(e))
+  event.preventDefault()
 }
 
 export const getCreateAccount = () => {
@@ -21,7 +23,7 @@ export const getCreateAccount = () => {
     .get(CreateAccountUrl)
     .then((res) => {
       console.log('success')
-      console.log(res)
+      console.log(res.data)
     })
     .catch((e) => console.error(e))
 }

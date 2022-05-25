@@ -21,8 +21,10 @@ module Api
         render json: {
           users: @users
         }, status: :ok
+          puts user_params
         else
           puts 'faildddd'
+          puts user_params
         # render json: {
         #   users: @users
         # }, status: :ok
@@ -32,8 +34,7 @@ module Api
     private
 
       def user_params
-        params.require(:user).permit(:name, :email, :password,
-                              :password_confirmation)
+        params.require(:user).permit(:name, :email, :password, :password_confirmation)
       end
     end
   end
