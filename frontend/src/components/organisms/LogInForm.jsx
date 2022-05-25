@@ -1,5 +1,5 @@
 // 外部モジュール
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 
 // 内部モジュール
@@ -7,7 +7,7 @@ import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
-import { getCreateAccount, PostCreateAccount } from '../../apis/CreateAccount'
+import { LogIn } from '../../apis/LogIn'
 
 const Title = styled.h1`
   margin-bottom: 32px;
@@ -44,18 +44,11 @@ const LogInTextLink = styled.a`
   color: ${Color.MainColor};
 `
 
-export const CreateForm = (props) => {
-  const [name, setName] = useState('')
+export const LogInForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmPass, setConfirmPass] = useState('')
   // const [loggedInStatus] = props
 
-  // 名前入力欄
-  const getName = (e) => {
-    const value = e.target.value.replace(/[^a-zA-Zぁ-んァ-ン一-龠 \u3000]/g, '') // 文字列とスペース以外は入力できないように
-    setName(value)
-  }
   // メアド入力欄
   const getEmail = (e) => {
     const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
@@ -66,14 +59,9 @@ export const CreateForm = (props) => {
     const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
     setPassword(value)
   }
-  // 確認用パスワード入力欄
-  const getConfirmPass = (e) => {
-    const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
-    setConfirmPass(value)
-  }
 
-  const CreateAccount = () => {
-    PostCreateAccount({
+  const PostLogIn = () => {
+    LogIn({
       name: 'good1',
       email: 'good1@gmail.com',
       password: 'goodgood',
@@ -81,24 +69,11 @@ export const CreateForm = (props) => {
     })
   }
 
-  useEffect(() => {
-    getCreateAccount()
-  }, [])
   return (
     <>
       {/* {loggedInStatus} */}
       <Title>アカウント作成</Title>
       <Wrap action="/users" id="new_user" method="post">
-        <CreateInputField
-          inputFor={'name'}
-          type={'text'}
-          name={'name'}
-          value={name}
-          placeholder={'山田　太郎'}
-          onChange={getName}
-        >
-          名前
-        </CreateInputField>
         <CreateInputField
           inputFor={'email'}
           type={'text'}
@@ -107,7 +82,7 @@ export const CreateForm = (props) => {
           placeholder={'example@gmail.com'}
           onChange={getEmail}
         >
-          Email
+          メールアドレス
         </CreateInputField>
         <CreateInputField
           inputFor="password"
@@ -119,20 +94,10 @@ export const CreateForm = (props) => {
         >
           パスワード
         </CreateInputField>
-        <CreateInputField
-          inputFor="password_confirmation"
-          type={'password'}
-          name="password_confirmation"
-          value={confirmPass}
-          placeholder="もう一度パスワードを入力してください"
-          onChange={getConfirmPass}
-        >
-          再確認用パスワード
-        </CreateInputField>
-        <FormBtn onClick={CreateAccount}>作成する</FormBtn>
+        <FormBtn onClick={PostLogIn}>ログイン</FormBtn>
         <Line />
         <LogInText>
-          ログインは<LogInTextLink>こちら</LogInTextLink>
+          アカウントをお持ちでない方は<LogInTextLink>こちら</LogInTextLink>
         </LogInText>
       </Wrap>
     </>
