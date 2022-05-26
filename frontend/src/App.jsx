@@ -8,6 +8,7 @@ import axios from 'axios'
 import { Home } from './components/pages/Home'
 import { LogIn } from './components/pages/LogIn'
 import { SignUp } from './components/pages/SignUp'
+import Dashboard from './components/Dashboard'
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
@@ -42,6 +43,7 @@ function App() {
     setLoggedInStatus('未ログイン')
     setUser({})
   }
+
   return (
     <>
       <GlobalStyle />
@@ -60,6 +62,11 @@ function App() {
           />
           <Route exact path={'/login'} element={<LogIn loggedInStatus={loggedInStatus} />} />
           <Route exact path={'/signup'} element={<SignUp loggedInStatus={loggedInStatus} />} />
+          <Route
+            exact
+            path={'/dashboard'}
+            element={<Dashboard loggedInStatus={loggedInStatus} />}
+          />
         </Routes>
       </BrowserRouter>
       {/* <Home /> */}
