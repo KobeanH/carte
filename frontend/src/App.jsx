@@ -24,7 +24,7 @@ function App() {
 
   const checkLoginStatus = () => {
     axios
-      .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
+      .get('http://localhost:3000/api/v1/logged_in', { withCredentials: true })
       .then((response) => {
         if (response.data.logged_in && loggedInStatus === '未ログイン') {
           setLoggedInStatus('ログインなう')

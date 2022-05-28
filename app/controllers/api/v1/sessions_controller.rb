@@ -23,6 +23,7 @@ module Api
         else
           render json: { logged_in: false, message: 'ユーザーが存在しません' }
         end
+        # puts 'success log in'
       end
 
       private

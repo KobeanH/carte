@@ -3,7 +3,6 @@ class ApplicationController < ActionController::API
     skip_before_action :verify_authenticity_token, raise: false
 
     include ActionController::Helpers
-    # include AbstractController::Helpers
     helper_method :login!, :current_user
 
     def login!
