@@ -19,7 +19,6 @@ export default function Loginn(props) {
         { withCredentials: true }
       )
       .then((response) => {
-        // console.log(response)
         if (response.data.logged_in) {
           props.handleSuccessfulAuthentication(response.data)
         }

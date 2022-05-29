@@ -12,20 +12,14 @@ import Dashboard from './components/Dashboard'
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
-  // const [user, setUser] = useState({})
   const navigate = useNavigate()
 
   const handleLogin = (data) => {
     setLoggedInStatus('ログインなう')
     navigate('/dashboard')
-    // setUser(data.user)
-    // console.log(user)
-    // console.log(data.user)
-    // console.log(loggedInStatus)
   }
 
   useEffect(() => {
-    // console.log(user)
     console.log(loggedInStatus)
     checkLoginStatus()
   })
@@ -38,7 +32,6 @@ function App() {
         if (response.data.logged_in && loggedInStatus === '未ログイン') {
           console.log('nice')
           setLoggedInStatus('ログインなうrrrrr')
-          // setUser(response.data.user)
         } else if (!response.data.logged_in && loggedInStatus === 'ログインなう') {
           setLoggedInStatus('未ログイン')
           // setUser({})
@@ -54,7 +47,6 @@ function App() {
 
   const handleLogout = () => {
     setLoggedInStatus('未ログイン')
-    // setUser({})
   }
 
   return (

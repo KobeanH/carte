@@ -11,9 +11,6 @@ export const Home = (props) => {
   const { loggedInStatus } = props
   const handleSuccessfulAuthentication = (data) => {
     props.handleLogin(data)
-    // console.log(data)
-    console.log(props)
-    // props.navigate('/dashboard')
   }
 
   const handleLogoutClick = () => {
