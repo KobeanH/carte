@@ -7,7 +7,7 @@ export default function Registration(props) {
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, props) => {
     axios
       .post(
         'http://localhost:3001/api/v1/users',

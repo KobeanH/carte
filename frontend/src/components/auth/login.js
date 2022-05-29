@@ -9,7 +9,7 @@ export default function Loginn(props) {
   const handleSubmit = (event) => {
     axios
       .post(
-        'http://localhost:3000/api/v1/login',
+        'http://localhost:3001/api/v1/login',
         {
           user: {
             email,
@@ -19,6 +19,7 @@ export default function Loginn(props) {
         { withCredentials: true }
       )
       .then((response) => {
+        // console.log(response)
         if (response.data.logged_in) {
           props.handleSuccessfulAuthentication(response.data)
         }
@@ -33,7 +34,6 @@ export default function Loginn(props) {
     <div>
       <p>ログイン</p>
 
-      {/* onSubmit、onChangeイベントを追加 */}
       <form onSubmit={handleSubmit}>
         <input
           type="email"

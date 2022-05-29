@@ -12,26 +12,36 @@ import Dashboard from './components/Dashboard'
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
-  const [setUser] = useState({})
+  const [user, setUser] = useState({})
 
   const handleLogin = (data) => {
     setLoggedInStatus('ログインなう')
     setUser(data.user)
+    // console.log(user)
+    // console.log(data.user)
+    // console.log(loggedInStatus)
   }
+
   useEffect(() => {
+    console.log(user)
     checkLoginStatus()
   })
 
   const checkLoginStatus = () => {
     axios
-      .get('http://localhost:3000/api/v1/logged_in', { withCredentials: true })
+      .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
       .then((response) => {
+        console.log(response)
         if (response.data.logged_in && loggedInStatus === '未ログイン') {
-          setLoggedInStatus('ログインなう')
+          console.log('nice')
+          setLoggedInStatus('ログインなうrrrrr')
           setUser(response.data.user)
         } else if (!response.data.logged_in && loggedInStatus === 'ログインなう') {
           setLoggedInStatus('未ログイン')
           setUser({})
+          console.log('failed from App.jsx')
+        } else {
+          console.log('elseeeeeee')
         }
       })
       .catch((error) => {
