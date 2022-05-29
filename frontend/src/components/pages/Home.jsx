@@ -1,5 +1,6 @@
 // 内部モジュール
 import axios from 'axios'
+
 import Loginn from '../auth/login'
 import Registration from '../auth/Registrations'
 import { Header } from '../organisms/Header'
@@ -11,7 +12,8 @@ export const Home = (props) => {
   const handleSuccessfulAuthentication = (data) => {
     props.handleLogin(data)
     // console.log(data)
-    // props.history.push('/dashboard')
+    console.log(props)
+    // props.navigate('/dashboard')
   }
 
   const handleLogoutClick = () => {

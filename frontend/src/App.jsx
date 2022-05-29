@@ -1,6 +1,6 @@
 // 外部モジュール
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { GlobalStyle } from './style/GlobalStyle'
 import axios from 'axios'
 
@@ -12,18 +12,21 @@ import Dashboard from './components/Dashboard'
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
-  const [user, setUser] = useState({})
+  // const [user, setUser] = useState({})
+  const navigate = useNavigate()
 
   const handleLogin = (data) => {
     setLoggedInStatus('ログインなう')
-    setUser(data.user)
+    navigate('/dashboard')
+    // setUser(data.user)
     // console.log(user)
     // console.log(data.user)
     // console.log(loggedInStatus)
   }
 
   useEffect(() => {
-    console.log(user)
+    // console.log(user)
+    console.log(loggedInStatus)
     checkLoginStatus()
   })
 
@@ -35,10 +38,10 @@ function App() {
         if (response.data.logged_in && loggedInStatus === '未ログイン') {
           console.log('nice')
           setLoggedInStatus('ログインなうrrrrr')
-          setUser(response.data.user)
+          // setUser(response.data.user)
         } else if (!response.data.logged_in && loggedInStatus === 'ログインなう') {
           setLoggedInStatus('未ログイン')
-          setUser({})
+          // setUser({})
           console.log('failed from App.jsx')
         } else {
           console.log('elseeeeeee')
@@ -51,34 +54,28 @@ function App() {
 
   const handleLogout = () => {
     setLoggedInStatus('未ログイン')
-    setUser({})
+    // setUser({})
   }
 
   return (
     <>
       <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            exact
-            path={'/'}
-            element={
-              <Home
-                handleLogout={handleLogout}
-                handleLogin={handleLogin}
-                loggedInStatus={loggedInStatus}
-              />
-            }
-          />
-          <Route exact path={'/login'} element={<LogIn loggedInStatus={loggedInStatus} />} />
-          <Route exact path={'/signup'} element={<SignUp loggedInStatus={loggedInStatus} />} />
-          <Route
-            exact
-            path={'/dashboard'}
-            element={<Dashboard loggedInStatus={loggedInStatus} />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          exact
+          path={'/'}
+          element={
+            <Home
+              handleLogout={handleLogout}
+              handleLogin={handleLogin}
+              loggedInStatus={loggedInStatus}
+            />
+          }
+        />
+        <Route exact path={'/login'} element={<LogIn loggedInStatus={loggedInStatus} />} />
+        <Route exact path={'/signup'} element={<SignUp loggedInStatus={loggedInStatus} />} />
+        <Route exact path={'/dashboard'} element={<Dashboard loggedInStatus={loggedInStatus} />} />
+      </Routes>
       {/* <Home /> */}
     </>
   )
