@@ -1,13 +1,13 @@
 // 外部モジュール
 import { useState } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 // 内部モジュール
 import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
-import { LogIn } from '../../apis/LogIn'
 
 const Title = styled.h1`
   margin-bottom: 32px;
@@ -47,7 +47,6 @@ const LogInTextLink = styled.a`
 export const LogInForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  // const [loggedInStatus] = props
 
   // メアド入力欄
   const getEmail = (e) => {
@@ -60,19 +59,32 @@ export const LogInForm = (props) => {
     setPassword(value)
   }
 
-  const PostLogIn = () => {
-    LogIn({
-      name: 'good1',
-      email: 'good1@gmail.com',
-      password: 'goodgood',
-      password_confirmation: 'goodgood',
-    })
+  const handleSubmit = (event) => {
+    axios
+      .post(
+        'http://localhost:3001/api/v1/login',
+        {
+          user: {
+            email,
+            password,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data.logged_in) {
+          props.handleSuccessfulAuthentication(response.data)
+        }
+      })
+      .catch((error) => {
+        console.log('registration error', error)
+      })
+    event.preventDefault()
   }
 
   return (
     <>
-      {/* {loggedInStatus} */}
-      <Title>アカウント作成</Title>
+      <Title>ログイン</Title>
       <Wrap action="/users" id="new_user" method="post">
         <CreateInputField
           inputFor={'email'}
@@ -94,7 +106,7 @@ export const LogInForm = (props) => {
         >
           パスワード
         </CreateInputField>
-        <FormBtn onClick={PostLogIn}>ログイン</FormBtn>
+        <FormBtn onClick={handleSubmit}>ログイン</FormBtn>
         <Line />
         <LogInText>
           アカウントをお持ちでない方は<LogInTextLink>こちら</LogInTextLink>

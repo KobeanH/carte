@@ -2,10 +2,11 @@
 
 import { LogInForm } from '../organisms/LogInForm'
 
-export const LogIn = () => {
+export const LogIn = (props) => {
+  const { handleSuccessfulAuthentication } = props
   return (
     <>
-      <LogInForm />
+      <LogInForm handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
     </>
   )
 }

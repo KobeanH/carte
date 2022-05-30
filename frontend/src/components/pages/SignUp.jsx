@@ -2,10 +2,11 @@
 
 import { CreateForm } from '../organisms/CreateForm'
 
-export const SignUp = () => {
+export const SignUp = (props) => {
+  const { handleSuccessfulAuthentication } = props
   return (
     <>
-      <CreateForm />
+      <CreateForm handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
     </>
   )
 }

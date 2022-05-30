@@ -1,9 +1,11 @@
 // 内部モジュール
 import axios from 'axios'
 
-import Loginn from '../auth/login'
+// import Loginn from '../auth/login'
 import Registration from '../auth/Registrations'
 import { Header } from '../organisms/Header'
+import { LogIn } from './LogIn'
+import { SignUp } from './SignUp'
 // import { LogIn } from './LogIn'
 // import { SignUp } from './SignUp'
 
@@ -27,10 +29,10 @@ export const Home = (props) => {
       <Header />
       <button onClick={handleLogoutClick}>ログアウト</button>
       <h2>ログイン状態{loggedInStatus}</h2>
-      {/* <SignUp handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
-      <LogIn handleSuccessfulAuthentication={handleSuccessfulAuthentication} /> */}
+      <SignUp handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+      <LogIn handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
       <Registration handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
-      <Loginn handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+      {/* <Loginn handleSuccessfulAuthentication={handleSuccessfulAuthentication} /> */}
     </>
   )
 }

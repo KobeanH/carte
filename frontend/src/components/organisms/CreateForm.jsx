@@ -73,12 +73,15 @@ export const CreateForm = (props) => {
   }
 
   const CreateAccount = () => {
-    PostCreateAccount({
-      name: 'good1',
-      email: 'good1@gmail.com',
-      password: 'goodgood',
-      password_confirmation: 'goodgood',
-    })
+    PostCreateAccount(
+      {
+        name: 'good9',
+        email: 'good9@gmail.com',
+        password: 'goodgood',
+        password_confirmation: 'goodgood',
+      },
+      props.handleSuccessfulAuthentication
+    )
   }
 
   // useEffect(() => {
@@ -88,7 +91,7 @@ export const CreateForm = (props) => {
     <>
       {/* {loggedInStatus} */}
       <Title>アカウント作成</Title>
-      <Wrap action="/users" id="new_user" method="post">
+      <Wrap onSubmit={CreateAccount} id="new_user">
         <CreateInputField
           inputFor={'name'}
           type={'text'}
@@ -129,7 +132,7 @@ export const CreateForm = (props) => {
         >
           再確認用パスワード
         </CreateInputField>
-        <FormBtn onClick={CreateAccount}>作成する</FormBtn>
+        <FormBtn type={'submit'}>作成する</FormBtn>
         <Line />
         <LogInText>
           ログインは<LogInTextLink>こちら</LogInTextLink>

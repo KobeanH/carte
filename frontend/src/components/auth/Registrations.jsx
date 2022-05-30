@@ -21,6 +21,8 @@ export default function Registration(props) {
         { withCredentials: true }
       )
       .then((response) => {
+        console.log(response)
+        console.log('nice')
         if (response.data.status === 'created') {
           props.handleSuccessfulAuthentication(response.data)
         }
