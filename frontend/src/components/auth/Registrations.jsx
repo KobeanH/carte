@@ -1,4 +1,3 @@
-// useStateフックをimportする
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -37,7 +36,6 @@ export default function Registration(props) {
     <div>
       <p>新規登録</p>
 
-      {/* onSubmit、onChangeイベントを追加 */}
       <form onSubmit={handleSubmit}>
         <input
           type="email"

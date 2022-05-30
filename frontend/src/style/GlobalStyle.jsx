@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans:wght@400;600;700;900&display=swap');
+
   ${reset}
   *, *::after, *::before {
     box-sizing: border-box;

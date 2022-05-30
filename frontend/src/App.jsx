@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { GlobalStyle } from './style/GlobalStyle'
 import axios from 'axios'
+import './style.css'
 
 // 内部モジュール
 import { Home } from './components/pages/Home'
