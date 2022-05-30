@@ -4,7 +4,7 @@ import { CreateAccountUrl } from '../urls/index'
 export const PostCreateAccount = (params, props) => {
   axios
     .post(
-      'http://localhost:3001/api/v1/users',
+      CreateAccountUrl,
       {
         user: {
           name: params.name,
@@ -23,14 +23,4 @@ export const PostCreateAccount = (params, props) => {
     })
     .catch((e) => console.error(e))
   params.preventDefault()
-}
-
-export const getCreateAccount = () => {
-  return axios
-    .get(CreateAccountUrl)
-    .then((res) => {
-      console.log('success')
-      console.log(res.data)
-    })
-    .catch((e) => console.error(e))
 }

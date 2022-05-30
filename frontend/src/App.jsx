@@ -1,21 +1,22 @@
 // 外部モジュール
 import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { GlobalStyle } from './style/GlobalStyle'
 import axios from 'axios'
-import './style.css'
 
 // 内部モジュール
+import { GlobalStyle } from './style/GlobalStyle'
 import { Home } from './components/pages/Home'
 import { LogIn } from './components/pages/LogIn'
 import { SignUp } from './components/pages/SignUp'
 import Dashboard from './components/Dashboard'
+import './style.css'
+import { LoggedInUrl } from './urls'
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
   const navigate = useNavigate()
 
-  const handleLogin = (data) => {
+  const handleLogin = () => {
     setLoggedInStatus('ログインなう')
     navigate('/dashboard')
   }
@@ -27,7 +28,7 @@ function App() {
 
   const checkLoginStatus = () => {
     axios
-      .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
+      .get(LoggedInUrl, { withCredentials: true })
       .then((response) => {
         console.log(response)
         if (response.data.logged_in && loggedInStatus === '未ログイン') {
@@ -35,7 +36,6 @@ function App() {
           setLoggedInStatus('ログインなうrrrrr')
         } else if (!response.data.logged_in && loggedInStatus === 'ログインなう') {
           setLoggedInStatus('未ログイン')
-          // setUser({})
           console.log('failed from App.jsx')
         } else {
           console.log('elseeeeeee')

@@ -49,7 +49,6 @@ export const CreateForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
-  // const [loggedInStatus] = props
 
   // 名前入力欄
   const getName = (e) => {
@@ -75,8 +74,8 @@ export const CreateForm = (props) => {
   const CreateAccount = () => {
     PostCreateAccount(
       {
-        name: 'good9',
-        email: 'good9@gmail.com',
+        name: 'good11',
+        email: 'good11@gmail.com',
         password: 'goodgood',
         password_confirmation: 'goodgood',
       },
@@ -84,12 +83,8 @@ export const CreateForm = (props) => {
     )
   }
 
-  // useEffect(() => {
-  //   getCreateAccount()
-  // }, [])
   return (
     <>
-      {/* {loggedInStatus} */}
       <Title>アカウント作成</Title>
       <Wrap onSubmit={CreateAccount} id="new_user">
         <CreateInputField

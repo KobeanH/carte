@@ -8,6 +8,7 @@ import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
+import { LogInUrl } from '../../urls'
 
 const Title = styled.h1`
   margin-bottom: 32px;
@@ -62,7 +63,7 @@ export const LogInForm = (props) => {
   const handleSubmit = (event) => {
     axios
       .post(
-        'http://localhost:3001/api/v1/login',
+        LogInUrl,
         {
           user: {
             email,
