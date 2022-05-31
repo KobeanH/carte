@@ -1,11 +1,21 @@
-// 内部モジュール
-import { CreateForm } from '../organisms/CreateForm'
+// 外部モジュール
+import { memo } from 'react'
+import styled from 'styled-components'
 
-export const SignUp = (props) => {
+// 内部モジュール
+import { SignUpForm } from '../organisms/SignUpForm'
+
+const Title = styled.h1`
+  margin-bottom: 32px;
+  font-size: 3.2rem;
+  text-align: center;
+`
+export const SignUp = memo((props) => {
   const { handleSuccessfulAuthentication } = props
   return (
     <>
-      <CreateForm handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+      <Title>アカウント作成</Title>
+      <SignUpForm handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
     </>
   )
-}
+})

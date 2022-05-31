@@ -1,7 +1,7 @@
 // 外部モジュール
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 
 // 内部モジュール
 import { GlobalStyle } from './style/GlobalStyle'
@@ -10,7 +10,7 @@ import { LogIn } from './components/pages/LogIn'
 import { SignUp } from './components/pages/SignUp'
 import Dashboard from './components/Dashboard'
 import './style.css'
-import { LoggedInUrl } from './urls'
+// import { LoggedInUrl } from './urls'
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
@@ -19,32 +19,30 @@ function App() {
   const handleLogin = () => {
     setLoggedInStatus('ログインなう')
     navigate('/dashboard')
+    console.log('From App')
   }
 
-  useEffect(() => {
-    console.log(loggedInStatus)
-    checkLoginStatus()
-  })
+  // useEffect(() => {
+  //   console.log(loggedInStatus)
+  //   checkLoginStatus()
+  // })
 
-  const checkLoginStatus = () => {
-    axios
-      .get(LoggedInUrl, { withCredentials: true })
-      .then((response) => {
-        console.log(response)
-        if (response.data.logged_in && loggedInStatus === '未ログイン') {
-          console.log('nice')
-          setLoggedInStatus('ログインなうrrrrr')
-        } else if (!response.data.logged_in && loggedInStatus === 'ログインなう') {
-          setLoggedInStatus('未ログイン')
-          console.log('failed from App.jsx')
-        } else {
-          console.log('elseeeeeee')
-        }
-      })
-      .catch((error) => {
-        console.log('ログインエラー', error)
-      })
-  }
+  // const checkLoginStatus = () => {
+  //   axios
+  //     .get(LoggedInUrl, { withCredentials: true })
+  //     .then((response) => {
+  //       console.log(response)
+  //       if (response.data.logged_in && loggedInStatus === '未ログイン') {
+  //         setLoggedInStatus('ログインなうrrrrr')
+  //       } else if (!response.data.logged_in && loggedInStatus === 'ログインなう') {
+  //         setLoggedInStatus('未ログイン')
+  //         console.log('failed from App.jsx')
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log('ログインエラー', error)
+  //     })
+  // }
 
   const handleLogout = () => {
     setLoggedInStatus('未ログイン')

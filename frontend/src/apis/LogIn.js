@@ -1,24 +1,24 @@
 import axios from 'axios'
-import { CreateAccountUrl } from '../urls/index'
+import { LogInUrl } from '../urls/index'
 
-export const LogIn = (params, props) => {
+export const SubmitLogIn = (email, password, props) => {
   axios
     .post(
-      CreateAccountUrl,
+      LogInUrl,
       {
         user: {
-          email: params.email,
-          password: params.password,
+          email,
+          password,
         },
       },
       { withCredentials: true }
     )
-    .then((res) => {
-      // 変更
-      if (res.data.logged_in) {
-        props.handleSuccessfulAuthentication(res.data)
+    .then((response) => {
+      if (response.data.logged_in) {
+        props.handleSuccessfulAuthentication(response.data)
       }
     })
-    .catch((e) => console.error(e))
-  params.preventDefault()
+    .catch((error) => {
+      console.log('registration error', error)
+    })
 }

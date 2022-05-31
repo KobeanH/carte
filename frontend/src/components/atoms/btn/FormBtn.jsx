@@ -15,10 +15,12 @@ const Btn = styled.button`
 `
 
 export const FormBtn = (props) => {
-  const { children, onClick } = props
+  const { children, type, onClick } = props
   return (
     <>
-      <Btn onClick={onClick}>{children}</Btn>
+      <Btn type={type} onClick={onClick}>
+        {children}
+      </Btn>
     </>
   )
 }
