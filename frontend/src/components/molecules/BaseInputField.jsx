@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { useFormContext } from 'react-hook-form'
 
 // 内部モジュール
-import { CreateInput } from '../atoms/input/CreateInput'
-import { CreateLabel } from '../atoms/label/CreateLabel'
+import { BaseInput } from '../atoms/input/BaseInput'
+import { BaseLabel } from '../atoms/label/BaseLabel'
 import React from 'react'
 
 const Wrap = styled.div`
@@ -17,14 +17,14 @@ const Wrap = styled.div`
   }
 `
 
-export const CreateInputField = React.forwardRef((props, ref) => {
+export const BaseInputField = React.forwardRef((props, ref) => {
   const { children, inputFor, type, name, value, placeholder, onChange } = props
   const { register } = useFormContext()
   return (
     <>
       <Wrap>
-        <CreateLabel inputFor={inputFor}>{children}</CreateLabel>
-        <CreateInput
+        <BaseLabel inputFor={inputFor}>{children}</BaseLabel>
+        <BaseInput
           id={inputFor}
           type={type}
           name={name}

@@ -15,7 +15,7 @@ const Input = styled.input`
   font-size: 1.4rem;
 `
 
-export const CreateInput = React.forwardRef((props, ref) => {
+export const BaseInput = React.forwardRef((props, ref) => {
   const { id, type, name, value, placeholder, onChange } = props
   const { register } = useFormContext()
   return (

@@ -5,13 +5,11 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 
 // 内部モジュール
-import { CreateInputField } from '../molecules/CreateInputField'
+import { BaseInputField } from '../molecules/BaseInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
-import axios from 'axios'
-import { CreateAccountUrl } from '../../urls'
-// import { SubmitSignUp } from '../../apis/SubmitSignUp'
+import { SubmitSignUp } from '../../apis/SubmitSignUp'
 
 const Wrap = styled.form`
   display: flex;
@@ -57,53 +55,18 @@ export const SignUpForm = memo((props) => {
     formState: { errors },
   } = useForm()
 
-  // const onSubmit = (data) => {
-  //   console.log(data)
-  //   reset()
-  // }
-
-  const SubmitSignUp = (data) => {
-    axios
-      .post(
-        CreateAccountUrl,
-        {
-          user: {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            password_confirmation: data.password_confirmation,
-          },
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log('From SubmitSignUp')
-        if (res.data.status === 'created') {
-          props.handleSuccessfulAuthentication(res.data)
-        }
-        console.log(res)
-      })
-      .catch((error) => {
-        console.log('registration error', error)
-      })
-    event.preventDefault()
+  const SubmitSignUpp = (data) => {
+    SubmitSignUp(data, props)
   }
-
-  // const SubmitSignUp2 = () => {
-  //   console.log('mmmfiifioashfhdsafhiohfidsah;hdfhoiasufgsahf;hfeua')
-  // }
 
   return (
     <>
       <FormProvider {...methods}>
-        <Wrap onSubmit={handleSubmit(SubmitSignUp)}>
-          {/* <Wrap id="new_user"> */}
-          <CreateInputField
+        <Wrap onSubmit={handleSubmit(SubmitSignUpp)}>
+          <BaseInputField
             inputFor={'name'}
             type={'text'}
-            // value={name}
             placeholder={'山田太郎'}
-            // onChange={getName}
             {...register('name', {
               required: '必須',
               maxLength: {
@@ -114,7 +77,6 @@ export const SignUpForm = memo((props) => {
                 value: /[ぁ-んァ-ン一-龠 \u3000]/g,
                 message: '日本語のみで入力してください',
               },
-              onChange: (e) => console.log(e.target.value),
             })}
           >
             名前
@@ -123,14 +85,12 @@ export const SignUpForm = memo((props) => {
               name="name"
               render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
             />
-          </CreateInputField>
+          </BaseInputField>
 
-          <CreateInputField
+          <BaseInputField
             inputFor={'email'}
             type={'text'}
-            // value={name}
             placeholder={'example@gmail.com'}
-            // onChange={getName}
             {...register('email', {
               required: '必須',
               maxLength: {
@@ -149,14 +109,12 @@ export const SignUpForm = memo((props) => {
               name="email"
               render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
             />
-          </CreateInputField>
+          </BaseInputField>
 
-          <CreateInputField
+          <BaseInputField
             inputFor={'password'}
             type={'password'}
-            // value={name}
             placeholder={'パスワード'}
-            // onChange={getName}
             {...register('password', {
               required: '必須',
               minLength: {
@@ -175,14 +133,11 @@ export const SignUpForm = memo((props) => {
               name="password"
               render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
             />
-          </CreateInputField>
-
-          <CreateInputField
+          </BaseInputField>
+          <BaseInputField
             inputFor={'password_confirmation'}
             type={'password'}
-            // value={name}
             placeholder={'再度パスワードを入力してください'}
-            // onChange={getName}
             {...register('password_confirmation', {
               required: '必須',
               minLength: {
@@ -193,7 +148,6 @@ export const SignUpForm = memo((props) => {
                 value: /[^ぁ-んァ-ン一-龠 \u3000]/g,
                 message: 'パスワードの形式が不正です',
               },
-              onChange: (e) => console.log(e.target.value),
             })}
           >
             確認用パスワード
@@ -202,8 +156,7 @@ export const SignUpForm = memo((props) => {
               name="password_confirmation"
               render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
             />
-          </CreateInputField>
-
+          </BaseInputField>
           <FormBtn type={'submit'}>作成する</FormBtn>
           <Line />
           <LogInText>

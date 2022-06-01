@@ -3,7 +3,7 @@ import { memo, useCallback, useState } from 'react'
 import styled from 'styled-components'
 
 // 内部モジュール
-import { CreateInputField } from '../molecules/CreateInputField'
+import { BaseInputField } from '../molecules/BaseInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
@@ -63,7 +63,7 @@ export const LogInForm = memo((props) => {
   return (
     <>
       <Wrap onClick={useCallback(() => SubmitLogIn(email, password, props), [])} id="new_user">
-        <CreateInputField
+        <BaseInputField
           inputFor={'email'}
           type={'text'}
           name={'email'}
@@ -72,8 +72,8 @@ export const LogInForm = memo((props) => {
           onChange={getEmail}
         >
           メールアドレス
-        </CreateInputField>
-        <CreateInputField
+        </BaseInputField>
+        <BaseInputField
           inputFor="password"
           type={'password'}
           name="password"
@@ -82,7 +82,7 @@ export const LogInForm = memo((props) => {
           onChange={getPassword}
         >
           パスワード
-        </CreateInputField>
+        </BaseInputField>
         <FormBtn type={'submit'}>ログイン</FormBtn>
         <Line />
         <LogInText>

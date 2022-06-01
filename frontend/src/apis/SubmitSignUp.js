@@ -1,32 +1,28 @@
 import axios from 'axios'
 import { CreateAccountUrl } from '../urls/index'
 
-export const SubmitSignUp = (
-  name,
-  email,
-  password,
-  confirmPass,
-  handleSuccessfulAuthentication
-) => {
+export const SubmitSignUp = (data, props) => {
   axios
     .post(
       CreateAccountUrl,
       {
         user: {
-          name,
-          email,
-          password,
-          password_confirmation: confirmPass,
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          password_confirmation: data.password_confirmation,
         },
       },
       { withCredentials: true }
     )
     .then((res) => {
+      console.log('From SubmitSignUp')
       if (res.data.status === 'created') {
-        handleSuccessfulAuthentication(res.data)
+        props.handleSuccessfulAuthentication(res.data)
       }
       console.log(res)
-      console.log('From SubmitSignUp')
     })
-    .catch((e) => console.error(e))
+    .catch((error) => {
+      console.log('registration error', error)
+    })
 }
