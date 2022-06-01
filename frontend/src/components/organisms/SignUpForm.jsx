@@ -9,8 +9,8 @@ import { CreateInputField } from '../molecules/CreateInputField'
 import { Line } from '../../img/Line'
 import { FormBtn } from '../atoms/btn/FormBtn'
 import { Color } from '../../style/Color'
-// import axios from 'axios'
-// import { CreateAccountUrl } from '../../urls'
+import axios from 'axios'
+import { CreateAccountUrl } from '../../urls'
 // import { SubmitSignUp } from '../../apis/SubmitSignUp'
 
 const Wrap = styled.form`
@@ -53,42 +53,41 @@ export const SignUpForm = memo((props) => {
   const {
     register,
     handleSubmit,
-    reset,
     methods,
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data)
-    reset()
-  }
-
-  // const SubmitSignUp = (event) => {
-  //   axios
-  //     .post(
-  //       CreateAccountUrl,
-  //       {
-  //         user: {
-  //           name,
-  //           email,
-  //           password,
-  //           password_confirmation: confirmPass,
-  //         },
-  //       },
-  //       { withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       console.log('From SubmitSignUp')
-  //       if (res.data.status === 'created') {
-  //         props.handleSuccessfulAuthentication(res.data)
-  //       }
-  //       console.log(res)
-  //     })
-  //     .catch((error) => {
-  //       console.log('registration error', error)
-  //     })
-  //   event.preventDefault()
+  // const onSubmit = (data) => {
+  //   console.log(data)
+  //   reset()
   // }
+
+  const SubmitSignUp = (data) => {
+    axios
+      .post(
+        CreateAccountUrl,
+        {
+          user: {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            password_confirmation: data.password_confirmation,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log('From SubmitSignUp')
+        if (res.data.status === 'created') {
+          props.handleSuccessfulAuthentication(res.data)
+        }
+        console.log(res)
+      })
+      .catch((error) => {
+        console.log('registration error', error)
+      })
+    event.preventDefault()
+  }
 
   // const SubmitSignUp2 = () => {
   //   console.log('mmmfiifioashfhdsafhiohfidsah;hdfhoiasufgsahf;hfeua')
@@ -97,7 +96,7 @@ export const SignUpForm = memo((props) => {
   return (
     <>
       <FormProvider {...methods}>
-        <Wrap onSubmit={handleSubmit(onSubmit)}>
+        <Wrap onSubmit={handleSubmit(SubmitSignUp)}>
           {/* <Wrap id="new_user"> */}
           <CreateInputField
             inputFor={'name'}
@@ -113,7 +112,7 @@ export const SignUpForm = memo((props) => {
               },
               pattern: {
                 value: /[ぁ-んァ-ン一-龠 \u3000]/g,
-                message: '名前の形式が不正です(日本語のみで登録してください)',
+                message: '日本語のみで入力してください',
               },
               onChange: (e) => console.log(e.target.value),
             })}
