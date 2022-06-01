@@ -42,6 +42,12 @@ const LogInTextLink = styled.a`
   font-size: 1.6rem;
   color: ${Color.MainColor};
 `
+const ErrorMessageText = styled.span`
+  display: block;
+  margin-top: 8px;
+  font-size: 1rem;
+  color: red;
+`
 
 export const SignUpForm = memo((props) => {
   const {
@@ -96,22 +102,109 @@ export const SignUpForm = memo((props) => {
           <CreateInputField
             inputFor={'name'}
             type={'text'}
-            name={'name'}
             // value={name}
-            placeholder={'山田　太郎'}
+            placeholder={'山田太郎'}
             // onChange={getName}
             {...register('name', {
-              required: true,
-              maxLength: 60,
+              required: '必須',
+              maxLength: {
+                value: 60,
+                message: '60文字以内で入力してください',
+              },
               pattern: {
                 value: /[ぁ-んァ-ン一-龠 \u3000]/g,
+                message: '名前の形式が不正です(日本語のみで登録してください)',
+              },
+              onChange: (e) => console.log(e.target.value),
+            })}
+          >
+            名前
+            <ErrorMessage
+              errors={errors}
+              name="name"
+              render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
+            />
+          </CreateInputField>
+
+          <CreateInputField
+            inputFor={'email'}
+            type={'text'}
+            // value={name}
+            placeholder={'example@gmail.com'}
+            // onChange={getName}
+            {...register('email', {
+              required: '必須',
+              maxLength: {
+                value: 255,
+                message: '255文字以内で入力してください',
+              },
+              pattern: {
+                value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
                 message: 'メールアドレスの形式が不正です',
               },
             })}
           >
-            名前
+            メールアドレス
+            <ErrorMessage
+              errors={errors}
+              name="email"
+              render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
+            />
           </CreateInputField>
-          <ErrorMessage errors={errors} name="name" />
+
+          <CreateInputField
+            inputFor={'password'}
+            type={'password'}
+            // value={name}
+            placeholder={'パスワード'}
+            // onChange={getName}
+            {...register('password', {
+              required: '必須',
+              minLength: {
+                value: 6,
+                message: '6文字以上入力してください',
+              },
+              pattern: {
+                value: /[^ぁ-んァ-ン一-龠 \u3000]/g,
+                message: 'パスワードの形式が不正です',
+              },
+            })}
+          >
+            パスワード
+            <ErrorMessage
+              errors={errors}
+              name="password"
+              render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
+            />
+          </CreateInputField>
+
+          <CreateInputField
+            inputFor={'password_confirmation'}
+            type={'password'}
+            // value={name}
+            placeholder={'再度パスワードを入力してください'}
+            // onChange={getName}
+            {...register('password_confirmation', {
+              required: '必須',
+              minLength: {
+                value: 6,
+                message: '6文字以上入力してください',
+              },
+              pattern: {
+                value: /[^ぁ-んァ-ン一-龠 \u3000]/g,
+                message: 'パスワードの形式が不正です',
+              },
+              onChange: (e) => console.log(e.target.value),
+            })}
+          >
+            確認用パスワード
+            <ErrorMessage
+              errors={errors}
+              name="password_confirmation"
+              render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
+            />
+          </CreateInputField>
+
           <FormBtn type={'submit'}>作成する</FormBtn>
           <Line />
           <LogInText>
