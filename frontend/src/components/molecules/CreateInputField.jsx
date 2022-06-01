@@ -1,9 +1,11 @@
 // 外部モジュール
 import styled from 'styled-components'
+import { useFormContext } from 'react-hook-form'
 
 // 内部モジュール
 import { CreateInput } from '../atoms/input/CreateInput'
 import { CreateLabel } from '../atoms/label/CreateLabel'
+import React from 'react'
 
 const Wrap = styled.div`
   display: flex;
@@ -15,9 +17,9 @@ const Wrap = styled.div`
   }
 `
 
-export const CreateInputField = (props) => {
+export const CreateInputField = React.forwardRef((props, ref) => {
   const { children, inputFor, type, name, value, placeholder, onChange } = props
-
+  const { register } = useFormContext()
   return (
     <>
       <Wrap>
@@ -29,8 +31,10 @@ export const CreateInputField = (props) => {
           value={value}
           placeholder={placeholder}
           onChange={onChange}
+          {...register}
+          ref={ref}
         />
       </Wrap>
     </>
   )
-}
+})

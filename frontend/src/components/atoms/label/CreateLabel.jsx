@@ -1,4 +1,5 @@
 // 外部モジュール
+import React from 'react'
 import styled from 'styled-components'
 
 // 内部モジュール
@@ -8,11 +9,13 @@ const Label = styled.label`
   font-size: 1.6rem;
 `
 
-export const CreateLabel = (props) => {
+export const CreateLabel = React.forwardRef((props, ref) => {
   const { children, inputFor } = props
   return (
     <>
-      <Label htmlFor={inputFor}>{children}</Label>
+      <Label htmlFor={inputFor} ref={ref}>
+        {children}
+      </Label>
     </>
   )
-}
+})

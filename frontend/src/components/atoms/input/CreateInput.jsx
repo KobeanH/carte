@@ -1,5 +1,7 @@
 // 外部モジュール
 import styled from 'styled-components'
+import { useFormContext } from 'react-hook-form'
+import React from 'react'
 
 // 内部モジュール
 
@@ -13,8 +15,9 @@ const Input = styled.input`
   font-size: 1.4rem;
 `
 
-export const CreateInput = (props) => {
+export const CreateInput = React.forwardRef((props, ref) => {
   const { id, type, name, value, placeholder, onChange } = props
+  const { register } = useFormContext()
   return (
     <>
       <Input
@@ -24,7 +27,9 @@ export const CreateInput = (props) => {
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        {...register}
+        ref={ref}
       ></Input>
     </>
   )
-}
+})
