@@ -11,11 +11,11 @@ const Title = styled.h1`
   text-align: center;
 `
 export const SignUp = memo((props) => {
-  const { handleSuccessfulAuthentication } = props
+  const { handleLogin } = props
   return (
     <>
       <Title>アカウント作成</Title>
-      <SignUpForm handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+      <SignUpForm handleLogin={handleLogin} />
     </>
   )
 })

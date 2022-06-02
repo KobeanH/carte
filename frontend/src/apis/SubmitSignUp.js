@@ -18,7 +18,7 @@ export const SubmitSignUp = (data, props) => {
     .then((res) => {
       console.log('From SubmitSignUp')
       if (res.data.status === 'created') {
-        props.handleSuccessfulAuthentication(res.data)
+        props.handleLogin(res.data)
       }
       console.log(res)
     })

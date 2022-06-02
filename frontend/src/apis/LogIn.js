@@ -1,21 +1,21 @@
 import axios from 'axios'
 import { LogInUrl } from '../urls/index'
 
-export const SubmitLogIn = (email, password, props) => {
+export const SubmitLogIn = (data, props) => {
   axios
     .post(
       LogInUrl,
       {
         user: {
-          email,
-          password,
+          email: data.email,
+          password: data.password,
         },
       },
       { withCredentials: true }
     )
     .then((response) => {
       if (response.data.logged_in) {
-        props.handleSuccessfulAuthentication(response.data)
+        props.handleLogin(response.data)
       }
     })
     .catch((error) => {

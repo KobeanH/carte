@@ -13,10 +13,10 @@ const Btn = styled.a`
 `
 
 export const GrayBtn = (props) => {
-  const { children } = props
+  const { children, onClick } = props
   return (
     <>
-      <Btn>{children}</Btn>
+      <Btn onClick={onClick}>{children}</Btn>
     </>
   )
 }

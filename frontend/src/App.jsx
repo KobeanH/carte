@@ -18,7 +18,7 @@ function App() {
 
   const handleLogin = () => {
     setLoggedInStatus('ログインなう')
-    navigate('/dashboard')
+    navigate('/')
     console.log('From App')
   }
 
@@ -63,8 +63,8 @@ function App() {
             />
           }
         />
-        <Route exact path={'/login'} element={<LogIn loggedInStatus={loggedInStatus} />} />
-        <Route exact path={'/signup'} element={<SignUp loggedInStatus={loggedInStatus} />} />
+        <Route exact path={'/login'} element={<LogIn handleLogin={handleLogin} />} />
+        <Route exact path={'/signup'} element={<SignUp handleLogin={handleLogin} />} />
         <Route exact path={'/dashboard'} element={<Dashboard loggedInStatus={loggedInStatus} />} />
       </Routes>
       {/* <Home /> */}

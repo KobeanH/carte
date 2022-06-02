@@ -1,6 +1,8 @@
 // 外部モジュール
-import { memo, useCallback, useState } from 'react'
+import { memo } from 'react'
 import styled from 'styled-components'
+import { useForm, FormProvider } from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message'
 
 // 内部モジュール
 import { BaseInputField } from '../molecules/BaseInputField'
@@ -38,57 +40,82 @@ const LogInTextLink = styled.a`
   font-size: 1.6rem;
   color: ${Color.MainColor};
 `
+const ErrorMessageText = styled.span`
+  display: block;
+  margin-top: 8px;
+  font-size: 1rem;
+  color: red;
+`
 
 export const LogInForm = memo((props) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const {
+    register,
+    handleSubmit,
+    methods,
+    formState: { errors },
+  } = useForm()
 
-  // メアド入力欄
-  const getEmail = useCallback(
-    (e) => {
-      const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
-      setEmail(value)
-    },
-    [email]
-  )
-  // パスワード入力欄
-  const getPassword = useCallback(
-    (e) => {
-      const value = e.target.value.replace(/[ぁ-んァ-ン一-龠 \u3000]/g, '') // 日本語とスペースは入力できないように
-      setPassword(value)
-    },
-    [password]
-  )
+  const SubmitSignUpp = (data) => {
+    SubmitLogIn(data, props)
+  }
 
   return (
     <>
-      <Wrap onClick={useCallback(() => SubmitLogIn(email, password, props), [])} id="new_user">
-        <BaseInputField
-          inputFor={'email'}
-          type={'text'}
-          name={'email'}
-          value={email}
-          placeholder={'example@gmail.com'}
-          onChange={getEmail}
-        >
-          メールアドレス
-        </BaseInputField>
-        <BaseInputField
-          inputFor="password"
-          type={'password'}
-          name="password"
-          value={password}
-          placeholder="パスワード"
-          onChange={getPassword}
-        >
-          パスワード
-        </BaseInputField>
-        <FormBtn type={'submit'}>ログイン</FormBtn>
-        <Line />
-        <LogInText>
-          アカウントをお持ちでない方は<LogInTextLink>こちら</LogInTextLink>
-        </LogInText>
-      </Wrap>
+      <FormProvider {...methods}>
+        <Wrap onSubmit={handleSubmit(SubmitSignUpp)} id="new_user">
+          <BaseInputField
+            inputFor={'email'}
+            type={'text'}
+            placeholder={'example@gmail.com'}
+            {...register('email', {
+              required: '必須',
+              maxLength: {
+                value: 255,
+                message: '255文字以内で入力してください',
+              },
+              pattern: {
+                value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+                message: 'メールアドレスの形式が不正です',
+              },
+            })}
+          >
+            メールアドレス
+            <ErrorMessage
+              errors={errors}
+              name="email"
+              render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
+            />
+          </BaseInputField>
+          <BaseInputField
+            inputFor="password"
+            type={'password'}
+            placeholder="パスワード"
+            {...register('password', {
+              required: '必須',
+              minLength: {
+                value: 6,
+                message: '6文字以上入力してください',
+              },
+              pattern: {
+                value: /[^ぁ-んァ-ン一-龠 \u3000]/g,
+                message: 'パスワードの形式が不正です',
+              },
+            })}
+          >
+            パスワード
+            <ErrorMessage
+              errors={errors}
+              name="password"
+              render={({ message }) => <ErrorMessageText>{message}</ErrorMessageText>}
+            />
+          </BaseInputField>
+          <FormBtn type={'submit'}>ログイン</FormBtn>
+          <Line />
+          <LogInText>
+            アカウントをお持ちでない方は<LogInTextLink>こちら</LogInTextLink>
+          </LogInText>
+        </Wrap>
+      </FormProvider>
     </>
   )
 })
