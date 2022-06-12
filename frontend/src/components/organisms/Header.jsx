@@ -6,7 +6,6 @@ import { HeaderLogo } from '../molecules/HeaderLogo'
 import { GrayBtn } from '../atoms/btn/GrayBtn'
 import axios from 'axios'
 import { LogOutInUrl } from '../../urls'
-import { useState } from 'react'
 
 const HeaderWrap = styled.header`
   position: relative;
@@ -23,16 +22,14 @@ const HeaderInner = styled.div`
   max-width: 1200px;
 `
 
-export const Header = () => {
-  const [loggedInStatus, setLoggedInStatus] = useState('未ログイン')
-  const handleLogoutClick = (props) => {
-    console.log('logi')
-
+export const Header = (props) => {
+  const { handleLogout } = props
+  const handleLogoutClick = () => {
     axios
       .delete(LogOutInUrl, { withCredentials: true })
       .then((response) => {
-        setLoggedInStatus('未ログイン')
-        console.log(loggedInStatus)
+        handleLogout()
+        console.log('logi')
       })
       .catch((error) => console.log('ログアウトエラー', error))
   }
