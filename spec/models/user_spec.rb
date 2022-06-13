@@ -77,30 +77,3 @@ RSpec.describe User do
     #   end
     # end
 end
-
-
-# RSpec.describe Palindrome do
-#   describe "回文か判定" do
-#     it "引数に渡された文字列が回文である時" do
-#       expect(is_Palindrome?('たけやぶやけた')).to eq true
-#     end
-#     it "引数に渡された文字列が回文ではない時" do
-#         expect(is_Palindrome?('たけやぶやけたた')).to eq false
-#     end
-#   end
-# end
-
-
-RSpec.describe User do
-  describe "n*nの二次元配列を左向きに90°回転" do
-    it "2*2の二次元配列の時" do
-      expect(rotate([['a','b'],['c','d']])).to eq [['b','d'],['a','c']]
-    end
-    it "3*3の二次元配列の時" do
-      expect(rotate([['a','b','c'],['d','e','f'],['g','h','i']])).to eq [['c','f','i'],['b','e','h'],['a','d','g']]
-    end
-    it "4*4の二次元配列の時" do
-      expect(rotate([['a','b','c','d'],['e','f','g','h'],['i','j','k','l'],['m','n','o','p']])).to eq [['d','h','l','p'],['c','g','k','o'],['b','f','j','n'],['a','e','i','m']]
-    end
-  end
-end
