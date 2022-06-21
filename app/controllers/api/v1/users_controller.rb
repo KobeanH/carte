@@ -26,7 +26,6 @@ module Api
           render json: { status: 500 }
         end
       end
-
       private
 
       def user_params
